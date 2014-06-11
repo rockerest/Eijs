@@ -20,7 +20,20 @@ define(
 					draw = new Draw( node );
 
 				this.Map = map;
+				this.Draw = draw;
 			};
+
+		ei.prototype.run = function(){
+			var self = this;
+			this.Draw.do({
+				once: true,
+				callback: function(){
+					self.Map.draw( self.output );
+				}
+			});
+
+			this.Draw.run();
+		};
 
 		return ei;
 	}

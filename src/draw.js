@@ -1,9 +1,8 @@
 define(
-	[ "animationPolyfill" ],
-	function(){
-		var Drawing = function( Canvas ){
-				this.canvas = Canvas;
-				this.todo = [];
+	[ "underscore", "animationPolyfill" ],
+	function( _ ){
+		var Drawing = function(){
+				this.todo = {};
 			},
 			loop;
 
@@ -11,22 +10,21 @@ define(
 			loop( this.todo );
 		};
 
-		Drawing.prototype.clean = function(){
-			this.canvas.width = this.canvas.width;
-			this.canvas.height = this.canvas.height;
-		};
+		Drawing.prototype.do = function( options ){
+			var index = _( this.todo ).size();
+			this.todo[ "item-" + index ] = options;
 
-		Drawing.prototype.do = function( selfContainedCallback ){
-			this.todo.push( selfContainedCallback );
+			return index;
 		};
 
 		loop = function( todo ){
-			var i = 0;
-
 			requestAnimationFrame( function(){ loop( todo ); } );
-			for( i; i < todo.length; i++ ){
-				todo[ i ]();
-			}
+			_( todo ).each(function( v, k, l ){
+				v.callback();
+				if( v.once && v.once == true ){
+					delete todo[ k ];
+				}
+			});
 		};
 
 		return Drawing;
