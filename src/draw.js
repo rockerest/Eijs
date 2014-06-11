@@ -11,6 +11,11 @@ define(
 			loop( this.todo );
 		};
 
+		Drawing.prototype.clean = function(){
+			this.canvas.width = this.canvas.width;
+			this.canvas.height = this.canvas.height;
+		};
+
 		Drawing.prototype.do = function( selfContainedCallback ){
 			this.todo.push( selfContainedCallback );
 		};

@@ -17,6 +17,11 @@ define(
 			}
 		};
 
+		Canvas.prototype.size = function( width, height ){
+			this.node.width = width;
+			this.node.height = height;
+		};
+
 		return Canvas;
 	}	
 );
