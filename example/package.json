@@ -1,11 +1,7 @@
 {
-  "name": "Eijs",
-  "repository": "https://github.com/rockerest/Eijs",
-  "bugs": "https://github.com/rockerest/Eijs/issues",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-bower-task": "^0.3.4",
-    "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-requirejs": "~0.4.4",
     "grunt-contrib-watch": "^0.6.1"
   }

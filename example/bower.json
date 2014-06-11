@@ -1,10 +1,9 @@
 {
-  "name": "Eijs",
+  "name": "EiJS Example",
   "authors": [
     "rockerest <admin@rockerest.com>"
   ],
-  "description": "Stuff in JS",
-  "main": "js/build/ei.js",
+  "description": "EiJS Example",
   "keywords": [],
   "license": "MIT",
   "private": true,
@@ -17,6 +16,7 @@
     "tests"
   ],
   "devDependencies": {
+    "jquery": "~2.1.1",
     "require": "requirejs#~2.1.14"
   }
 }

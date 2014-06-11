@@ -22,9 +22,23 @@ module.exports = function( grunt ){
                     "paths":{
                         "jquery": "empty:",
                     },
-                    "name": "bootstrap",
+                    "name": "ei",
                     "out": "build/<%= pkg.name.build %>.js"
                 }
+            }
+        },
+        "copy": {
+            "built": {
+                "files": [{
+                    "src": 'build/ei.js',
+                    "dest": 'vendor/ei/ei.js'
+                }]
+            }
+        },
+        "watch": {
+            "scripts": {
+                "files": ['src/**/*.js', 'Gruntfile.js'],
+                "tasks": ['build']
             }
         }
 	});
@@ -41,12 +55,14 @@ module.exports = function( grunt ){
 
 	//contrib tasks
 	grunt.loadNpmTasks( 'grunt-contrib-requirejs' );
+    grunt.loadNpmTasks( 'grunt-contrib-copy' );
+    grunt.loadNpmTasks( 'grunt-contrib-watch' );
 
 	//other tasks
     grunt.loadNpmTasks( 'grunt-bower-task' );
 
 	grunt.registerTask( "setup", ["prepare", "bower:install"] );
-	grunt.registerTask( "build", ["requirejs:compile"] );
+	grunt.registerTask( "build", ["requirejs:compile", "copy"] );
 
-	grunt.registerTask( "default", ["build"] );
+	grunt.registerTask( "default", ["build", "watch"] );
 };
