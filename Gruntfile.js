@@ -21,6 +21,7 @@ module.exports = function( grunt ){
                     "baseUrl": "src/",
                     "paths":{
                         "jquery": "empty:",
+                        "underscore": "../vendor/underscore/underscore"
                     },
                     "name": "ei",
                     "out": "build/<%= pkg.name.build %>.js"

@@ -17,6 +17,7 @@
     "tests"
   ],
   "devDependencies": {
-    "require": "requirejs#~2.1.14"
+    "require": "requirejs#~2.1.14",
+    "underscore": "~1.6.0"
   }
 }
