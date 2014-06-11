@@ -1,0 +1,8 @@
+{
+  "name": "Eijs",
+  "repository": "https://github.com/rockerest/Eijs",
+  "bugs": "https://github.com/rockerest/Eijs/issues",
+  "devDependencies": {
+    "grunt-bower-task": "^0.3.4",
+  }
+}
