@@ -1,0 +1,22 @@
+{
+  "name": "Eijs",
+  "authors": [
+    "rockerest <admin@rockerest.com>"
+  ],
+  "description": "Stuff in JS",
+  "main": "js/build/ei.js",
+  "keywords": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}

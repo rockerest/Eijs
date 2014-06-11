@@ -4,5 +4,6 @@
   "bugs": "https://github.com/rockerest/Eijs/issues",
   "devDependencies": {
     "grunt-bower-task": "^0.3.4",
+    "grunt": "~0.4.5"
   }
 }
