@@ -1,5 +1,5 @@
 define(
-	[],
+	[ "animationPolyfill" ],
 	function(){
 		var Drawing = function( Canvas ){
 				this.canvas = Canvas;
