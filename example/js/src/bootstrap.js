@@ -1,6 +1,7 @@
 requirejs.config({
     "paths": {
-        "ei": "../../../vendor/ei/ei.js"
+        "jquery": ["//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min", "../vendor/jquery/jquery"],
+        "ei": "../../../src/ei"
     },
     "config": {
         "config": {

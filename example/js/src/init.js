@@ -1,6 +1,6 @@
 define(
-    [],
-    function(){
+    ["jquery"],
+    function( $ ){
         var Init = {},
             Ei;
 
@@ -8,35 +8,35 @@ define(
             var map = new Image(),
                 collisions = new Image(),
                 total = 2,
-                loaded = 0;
+                loaded = 0,
+                load = function(){
+                    loaded += 1;
+                    if( loaded == total ){
+                        Init.mapLoaded( map, collisions );
+                    }
+                };
 
             Ei = ei;
 
-            map.onload = function(){
-                loaded += 1;
-                if( loaded == total ){
-                    Init.mapLoaded( map, collisions );
-                }
-            };
-
-            collisions.onload = function(){
-                loaded += 1;
-                if( loaded == total ){
-                    Init.mapLoaded( map, collisions );
-                }
-            };
+            map.onload = load;
+            collisions.onload = load;
 
             map.src = "img/maps/00001m.png";
             collisions.src = "img/maps/00001o.png";
+
+            $( '#main' ).on( "click", function( e ){
+                var response = Ei.Map.isPointTraversable( e.clientX, e.clientY, Ei.output ),
+                    expanded = Ei.Map.checkResponse( response );
+
+                console.log( expanded.description );
+            });
         };
 
         Init.mapLoaded = function( m, o ){
             Ei.Map.set( m );
             Ei.Map.setCollisionOverlay( o );
 
-            Ei.Map.draw( Ei.output );
-
-            console.log( Ei );
+            Ei.run();
         };
 
         return Init;
