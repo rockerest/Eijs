@@ -1,7 +1,10 @@
 module.exports = function( grunt ){
 	grunt.initConfig({
 		"pkg": {
-			"name": "Eijs"
+			"name": {
+				"main": "EiJS",
+				"build": "ei"
+			}
 		},
 		"bower": {
 			"install":{
@@ -11,12 +14,24 @@ module.exports = function( grunt ){
                     "cleanBowerDir": true
                 }
             }
-		}
+		},
+		"requirejs":{
+            "compile":{
+                "options":{
+                    "baseUrl": "src/",
+                    "paths":{
+                        "jquery": "empty:",
+                    },
+                    "name": "bootstrap",
+                    "out": "build/<%= pkg.name.build %>.js"
+                }
+            }
+        }
 	});
 
 	grunt.registerTask( 'clean', "Wipe the build directory", function(){
-		grunt.file.delete( "./js/build" );
-        grunt.file.mkdir( "./js/build" );
+		grunt.file.delete( "./build" );
+        grunt.file.mkdir( "./build" );
     });
 
 	grunt.registerTask( 'prepare', "Prepare directory structure for anything necessary", function(){
@@ -24,7 +39,14 @@ module.exports = function( grunt ){
         grunt.file.mkdir( "./vendor" );
     });
 
+	//contrib tasks
+	grunt.loadNpmTasks( 'grunt-contrib-requirejs' );
+
+	//other tasks
     grunt.loadNpmTasks( 'grunt-bower-task' );
 
-	grunt.registerTask( "setup", ["bower"] );
+	grunt.registerTask( "setup", ["prepare", "bower:install"] );
+	grunt.registerTask( "build", ["requirejs:compile"] );
+
+	grunt.registerTask( "default", ["build"] );
 };
