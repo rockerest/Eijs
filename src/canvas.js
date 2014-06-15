@@ -11,6 +11,11 @@ define(
 			return canvas.getContext( '2d' );
 		};
 
+		Canvas.reset = function( canvas ){
+			canvas.width = canvas.width;
+			canvas.height = canvas.height;
+		};
+
 		return Canvas;
 	}
 );

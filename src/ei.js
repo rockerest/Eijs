@@ -1,6 +1,6 @@
 define(
-	["draw", "map"],
-	function( Draw, Map ){
+	["draw", "map", "objects/player"],
+	function( Draw, Map, Player ){
 		var ei = function( node, Config ){
 				if( node.nodeType == 1 && node.tagName == 'CANVAS' ){
 					this.output = node;
@@ -16,19 +16,22 @@ define(
 					throw new Error( "ei requires an html canvas node to function properly." );
 				}
 
-				var map = new Map( Config ),
+				this.settings = Config;
+
+				var map = new Map( this ),
+					player = new Player( this ),
 					draw = new Draw( node );
 
 				this.Map = map;
+				this.Player = player;
 				this.Draw = draw;
 			};
 
 		ei.prototype.run = function(){
 			var self = this;
 			this.Draw.do({
-				once: true,
 				callback: function(){
-					self.Map.draw( self.output );
+					self.Map.draw();
 				}
 			});
 
