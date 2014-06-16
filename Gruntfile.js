@@ -32,7 +32,7 @@ module.exports = function( grunt ){
             "built": {
                 "files": [{
                     "src": 'build/ei.js',
-                    "dest": 'vendor/ei/ei.js'
+                    "dest": 'example/vendor/ei/ei.js'
                 }]
             }
         },

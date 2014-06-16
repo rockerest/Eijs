@@ -16,7 +16,6 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "~2.1.1",
     "require": "requirejs#~2.1.14"
   }
 }

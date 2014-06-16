@@ -18,7 +18,7 @@ module.exports = function( grunt ){
                     "baseUrl": "js/src/",
                     "paths":{
                         "jquery": "empty:",
-                        "ei": "../../../vendor/ei/ei"
+                        "ei": "../../vendor/ei/ei"
                     },
                     "name": "bootstrap",
                     "out": "js/build/<%= pkg.name %>.js"
@@ -27,7 +27,7 @@ module.exports = function( grunt ){
         },
         "watch": {
             "scripts": {
-                "files": ['js/src/**/*.js', 'Gruntfile.js', '../vendor/ei/ei.js'],
+                "files": ['js/src/**/*.js', 'Gruntfile.js', 'vendor/ei/ei.js'],
                 "tasks": ['build']
             }
         }
