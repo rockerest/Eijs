@@ -11,6 +11,21 @@ define(
 			return store( this, node );
 		};
 
+		ei.prototype.unmanage = function( node ){
+			var match = function( canvas ){
+					return canvas === node;
+				},
+				managed = _(this.canvasses).find( match );
+
+			if( managed ){
+				delete this.canvasses[ managed.getAttribute( "data-eijs-id" ) ];
+				this.events.fire( "eijs.init/canvas/unmanage", { "canvas": managed } );
+			}
+			else{
+				this.events.fire( "eijs.init/canvas/unmanage/fail", { "canvas": node } );
+			}
+		};
+
 		ei.prototype.spawn = function( w, h ){
 			var canvas = Init.create();
 			canvas.width = w;
@@ -34,6 +49,7 @@ define(
 
 			return canvas;
 		};
+
 
 		store = function( Ei, node ){
 			var match = function( canvas ){

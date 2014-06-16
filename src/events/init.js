@@ -24,6 +24,16 @@ define(
                 console.info( "EiJS is already managing that canvas." );
                 console.log( self.engine.getCanvas( e.id ) );
             });
+
+            this.bind( "eijs.init/canvas/unmanage", function( e ){
+                console.info( "EiJS has stopped managing a canvas." );
+                console.log( e.canvas );
+            });
+
+            this.bind( "eijs.init/canvas/unmanage/fail", function( e ){
+                console.info( "EiJS is not managing that canvas." );
+                console.log( e.canvas );
+            });
         };
 
         return InitEvents;

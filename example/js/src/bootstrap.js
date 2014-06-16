@@ -13,5 +13,9 @@ require(
             spawned = ei.spawn( 25, 25 );
 
         $( '#main' ).after( spawned );
+
+        ei.manage( main );
+        ei.unmanage( main );
+        ei.unmanage( main );
     }
 );
