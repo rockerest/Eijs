@@ -16,7 +16,8 @@ define(
 			canvas.width = w;
 			canvas.height = h;
 
-			return store( this, canvas );
+			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
+			return canvas;
 		};
 
 		ei.prototype.getCanvas = function( id ){
