@@ -1,5 +1,4 @@
 define(
-    [],
     function(){
         var DomManager = {};
 
@@ -10,7 +9,7 @@ define(
         };
 
         DomManager.generateId = function(){
-            return "eijs-" + (new Date()).getTime();
+            return "eijs-" + (new Date()).getTime() + "-" + (++window.ei.utility.unique);
         };
 
         return DomManager;
