@@ -16,8 +16,7 @@ define(
 			canvas.width = w;
 			canvas.height = h;
 
-			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
-			return canvas;
+			return this.pushCanvas( canvas );
 		};
 
 		ei.prototype.getCanvas = function( id ){
@@ -27,6 +26,13 @@ define(
 			else{
 				return this.canvasses;
 			}
+		};
+
+		ei.prototype.pushCanvas = function( canvas ){
+			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
+			Ei.events.fire( "eijs.init/canvas/manage" );
+
+			return canvas;
 		};
 
 		store = function( Ei, node ){
@@ -41,9 +47,7 @@ define(
 			}
 			else{
 				managed = Init.load( node );
-				id = managed.getAttribute( "data-eijs-id" );
-				Ei.canvasses[ id ] = managed;
-				Ei.events.fire( "eijs.init/canvas/manage" );
+				this.pushCanvas( managed );
 			}
 
 			return managed;
