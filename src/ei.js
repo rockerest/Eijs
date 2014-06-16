@@ -30,7 +30,7 @@ define(
 
 		ei.prototype.pushCanvas = function( canvas ){
 			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
-			Ei.events.fire( "eijs.init/canvas/manage" );
+			this.events.fire( "eijs.init/canvas/manage" );
 
 			return canvas;
 		};
@@ -47,7 +47,7 @@ define(
 			}
 			else{
 				managed = Init.load( node );
-				this.pushCanvas( managed );
+				Ei.pushCanvas( managed );
 			}
 
 			return managed;
