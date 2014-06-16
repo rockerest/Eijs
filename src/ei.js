@@ -1,5 +1,5 @@
 define(
-	["require", "underscore", "init", "events/init", "polyfills/animation", "polyfills/qsa"],
+	["require", "underscore", "init", "events/init", "config", "polyfills/animation", "polyfills/qsa"],
 	function( require, _, Init, Events ){
 		var ei = function(){
 				this.canvasses = {};
@@ -29,25 +29,23 @@ define(
 		};
 
 		store = function( Ei, node ){
-			var stored = false,
+			var match = function( canvas ){
+					return canvas === node;
+				},
+				managed = _(Ei.canvasses).find( match ),
 				loaded, id;
 
-			while( !stored ){
-				if( loaded ){
-					id = loaded.getAttribute( "data-eijs-id" );
-					if( !(_(Ei.canvasses).has( id )) ){
-						Ei.canvasses[ id ] = loaded;
-						stored = true;
-					}
-				}
-				else{
-					loaded = Init.load( node );
-				}
+			if( managed ){
+				Ei.events.fire( "eijs.init/canvas/remanage", { "id": managed.getAttribute( "data-eijs-id") } );
+			}
+			else{
+				managed = Init.load( node );
+				id = managed.getAttribute( "data-eijs-id" );
+				Ei.canvasses[ id ] = managed;
+				Ei.events.fire( "eijs.init/canvas/manage" );
 			}
 
-			Ei.events.fire( "eijs.init/canvas/manage" );
-
-			return loaded;
+			return managed;
 		};
 
 		return ei;

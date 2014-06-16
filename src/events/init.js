@@ -19,6 +19,11 @@ define(
                 console.info( "EiJS is managing a new canvas." );
                 console.log( self.engine.getCanvas() );
             });
+
+            this.bind( "eijs.init/canvas/remanage", function( e ){
+                console.info( "EiJS is already managing that canvas." );
+                console.log( self.engine.getCanvas( e.id ) );
+            });
         };
 
         return InitEvents;
