@@ -2,6 +2,8 @@
  * Init object to process EiJS initialization activities
  * @author Tom Randolph
  * @module init
+ *
+ * @requires  domManager
  */
 define(
     ["domManager"],

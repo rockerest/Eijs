@@ -1,7 +1,17 @@
 /**
- * The main EiJS module definition
+ * The main EiJS module definition.
+ *
  * @author Tom Randolph
  * @module ei
+ *
+ * @requires  {@link http://requirejs.org/ RequireJS}
+ * @requires  {@link http://underscorejs.org/ UnderscoreJS}
+ *
+ * @requires  init
+ * @requires  events/init
+ * @requires  config
+ * @requires  polyfills/animation
+ * @requires  polyfills/qsa
  */
 define(
 	["require", "underscore", "init", "events/init", "config", "polyfills/animation", "polyfills/qsa"],

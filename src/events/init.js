@@ -2,6 +2,10 @@
  * Defines the events for the Init object
  * @author Tom Randolph
  * @module events/init
+ *
+ * @requires  {@link http://jquery.com/ jQuery}
+ *
+ * @requires  event
  */
 define(
     ["jquery", "event"],

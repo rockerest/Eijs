@@ -2,6 +2,8 @@
  * Base module for Event utility functions
  * @author Tom Randolph
  * @module event
+ *
+ * @requires {@link http://jquery.com/ jQuery}
  */
 define(
     ["jquery"],
