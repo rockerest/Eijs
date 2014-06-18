@@ -1,3 +1,7 @@
+/**
+ * Browser polyfill for RequestAnimationFrame and CancelAnimationFrame
+ * @module polyfills/animation
+ */
 define(function(){
     var lastTime = 0;
     var vendors = ['webkit', 'moz'];

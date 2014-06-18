@@ -1,3 +1,7 @@
+/**
+ * Browser polyfill for QuerySelectorAll
+ * @module polyfills/qsa
+ */
 define(function(){
     if( !document.querySelectorAll){
         document.querySelectorAll = function( selector ){

@@ -1,3 +1,8 @@
+/**
+ * EiJS config module
+ * @author Tom Randolph
+ * @module config
+ */
 define(
     function(){
         window.ei = window.ei || {};

@@ -1,16 +1,39 @@
+/**
+ * The main EiJS module definition
+ * @author Tom Randolph
+ * @module ei
+ */
 define(
 	["require", "underscore", "init", "events/init", "config", "polyfills/animation", "polyfills/qsa"],
 	function( require, _, Init, Events ){
+		/**
+		 * @alias module:ei
+		 * @constructor
+		 */
 		var ei = function(){
 				this.canvasses = {};
 				this.events = new Events( this );
 			},
+			Init = new Init(),
 			store;
 
+		/**
+		 * Manage a canvas node in Ei
+		 * @param  {HTMLCanvasElement} node - An HTML CANVAS node to be managed by EiJS
+		 *
+		 * @return {HTMLCanvasElement} The CANVAS element after being managed by EiJS
+		 */
 		ei.prototype.manage = function( node ){
 			return store( this, node );
 		};
 
+		/**
+		 * Stop managing a canvas node
+		 * @param  {HTMLCanvasElement} node - An HTML CANVAS node that has been managed by EiJS
+		 *
+		 * @fires module:events/init.canvas/unmanage
+		 * @fires module:events/init.canvas/unmanage/fail
+		 */
 		ei.prototype.unmanage = function( node ){
 			var match = function( canvas ){
 					return canvas === node;
@@ -19,13 +42,20 @@ define(
 
 			if( managed ){
 				delete this.canvasses[ managed.getAttribute( "data-eijs-id" ) ];
-				this.events.fire( "eijs.init/canvas/unmanage", { "canvas": managed } );
+				this.events.fire( "init.canvas/unmanage", { "canvas": managed } );
 			}
 			else{
-				this.events.fire( "eijs.init/canvas/unmanage/fail", { "canvas": node } );
+				this.events.fire( "init.canvas/unmanage/fail", { "canvas": node } );
 			}
 		};
 
+		/**
+		 * Create a new CANVAS managed by EiJS
+		 * @param  {number} w - Width of canvas in pixels
+		 * @param  {number} h - Height of canvas in pixels
+		 *
+		 * @return {HTMLCanvasElement}
+		 */
 		ei.prototype.spawn = function( w, h ){
 			var canvas = Init.create();
 			canvas.width = w;
@@ -34,6 +64,12 @@ define(
 			return this.pushCanvas( canvas );
 		};
 
+		/**
+		 * Get one or all of the EiJS-managed canvasses
+		 * @param  {string} id - the string id of the EiJS-managed CANVAS (should be found as an attribute of the element - {@linkcode data-eijs-id})
+		 *
+		 * @return {HTMLCanvasElement|Array} The requested EiJS-managed CANVAS or an array of all EiJS-managed canvasses
+		 */
 		ei.prototype.getCanvas = function( id ){
 			if( id && this.canvasses[ id ] ){
 				return this.canvasses[ id ];
@@ -43,6 +79,14 @@ define(
 			}
 		};
 
+		/**
+		 * Add a new CANVAS to the list of EiJS-managed canvasses
+		 * @param  {HTMLCanvasElement} canvas - A CANVAS to add to the list of known EiJS canvasses
+		 *
+		 * @fires  module:events/init.canvas/manage
+		 *
+		 * @return {HTMLCanvasElement}
+		 */
 		ei.prototype.pushCanvas = function( canvas ){
 			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
 			this.events.fire( "eijs.init/canvas/manage" );
@@ -50,7 +94,15 @@ define(
 			return canvas;
 		};
 
-
+		/**
+		 * Attempt to use EiJS to manage an HTMLCanvasElement
+		 * @param  {module:ei} Ei
+		 * @param  {HTMLCanvasElement} node
+		 *
+		 * @fires  module:events/init.canvas/remanage
+		 *
+		 * @return {HTMLCanvasElement}
+		 */
 		store = function( Ei, node ){
 			var match = function( canvas ){
 					return canvas === node;
