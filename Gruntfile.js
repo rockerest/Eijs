@@ -6,6 +6,12 @@ module.exports = function( grunt ){
 				"build": "ei"
 			}
 		},
+        "jsdoc": {
+            "documentation": {
+                "src": ['src/**/*.js', 'README.md'],
+                "dest": "doc/"
+            }
+        },
 		"bower": {
 			"install":{
                 "options":{
@@ -37,20 +43,27 @@ module.exports = function( grunt ){
             }
         },
         "watch": {
-            "scripts": {
+            "application": {
                 "files": ['src/**/*.js', 'Gruntfile.js'],
                 "tasks": ['build']
+            },
+            "documentation": {
+                "files": ['src/**/*.js', 'Gruntfile.js'],
+                "tasks": ['jsdoc']
             }
         }
 	});
 
 	grunt.registerTask( 'clean', "Wipe the build directory", function(){
 		grunt.file.delete( "./build" );
-        grunt.file.mkdir( "./build" );
+        grunt.file.delete( "./doc" );
+        
     });
 
 	grunt.registerTask( 'prepare', "Prepare directory structure for anything necessary", function(){
         grunt.task.run( ['clean'] );
+        grunt.file.mkdir( "./build" );
+        grunt.file.mkdir( "./doc" );
         grunt.file.mkdir( "./vendor" );
     });
 
@@ -61,6 +74,7 @@ module.exports = function( grunt ){
 
 	//other tasks
     grunt.loadNpmTasks( 'grunt-bower-task' );
+    grunt.loadNpmTasks( 'grunt-jsdoc' );
 
 	grunt.registerTask( "setup", ["prepare", "bower:install"] );
 	grunt.registerTask( "build", ["requirejs:compile", "copy"] );
