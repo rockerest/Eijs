@@ -1,6 +1,7 @@
 /**
  * EiJS DomNode manager
  * @author Tom Randolph
+ *
  * @module domManager
  */
 define(

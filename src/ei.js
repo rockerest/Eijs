@@ -1,11 +1,32 @@
 /**
+ * jQuery
+ * @external jQuery
+ *
+ * @see http://jquery.com/
+ */
+
+/**
+ * RequireJS
+ * @external Require
+ *
+ * @see http://requirejs.org/
+ */
+
+/**
+ * Underscore.js
+ * @external Underscore
+ *
+ * @see  http://underscorejs.org/
+ */
+
+/**
  * The main EiJS module definition.
  *
  * @author Tom Randolph
  * @module ei
  *
- * @requires  {@link http://requirejs.org/ RequireJS}
- * @requires  {@link http://underscorejs.org/ UnderscoreJS}
+ * @requires  {@link external:Require RequireJS}
+ * @requires  {@link external:Underscore Underscore.js}
  *
  * @requires  init
  * @requires  events/init
@@ -52,10 +73,10 @@ define(
 
 			if( managed ){
 				delete this.canvasses[ managed.getAttribute( "data-eijs-id" ) ];
-				this.events.fire( "init.canvas/unmanage", { "canvas": managed } );
+				this.events.fire( "init/canvas/unmanage", { "canvas": managed } );
 			}
 			else{
-				this.events.fire( "init.canvas/unmanage/fail", { "canvas": node } );
+				this.events.fire( "init/canvas/unmanage/fail", { "canvas": node } );
 			}
 		};
 
@@ -99,7 +120,7 @@ define(
 		 */
 		ei.prototype.pushCanvas = function( canvas ){
 			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
-			this.events.fire( "eijs.init/canvas/manage" );
+			this.events.fire( "eijs/init/canvas/manage" );
 
 			return canvas;
 		};
@@ -121,7 +142,7 @@ define(
 				loaded, id;
 
 			if( managed ){
-				Ei.events.fire( "eijs.init/canvas/remanage", { "id": managed.getAttribute( "data-eijs-id") } );
+				Ei.events.fire( "eijs/init/canvas/remanage", { "id": managed.getAttribute( "data-eijs-id") } );
 			}
 			else{
 				managed = Init.load( node );

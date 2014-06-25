@@ -3,7 +3,7 @@
  * @author Tom Randolph
  * @module event
  *
- * @requires {@link http://jquery.com/ jQuery}
+ * @requires {@link external:jQuery jQuery}
  */
 define(
     ["jquery"],
