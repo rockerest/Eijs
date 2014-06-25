@@ -42,6 +42,15 @@ module.exports = function( grunt ){
                 }]
             }
         },
+        "mocha": {
+            "test": {
+                "src": "test/index.html",
+                "options": {
+                    "growlOnSuccess": true,
+                    "reporter": "Nyan"
+                }
+            }
+        },
         "watch": {
             "application": {
                 "files": ['src/**/*.js', 'Gruntfile.js'],
@@ -57,7 +66,7 @@ module.exports = function( grunt ){
 	grunt.registerTask( 'clean', "Wipe the build directory", function(){
 		grunt.file.delete( "./build" );
         grunt.file.delete( "./doc" );
-        
+
     });
 
 	grunt.registerTask( 'prepare', "Prepare directory structure for anything necessary", function(){
@@ -75,9 +84,12 @@ module.exports = function( grunt ){
 	//other tasks
     grunt.loadNpmTasks( 'grunt-bower-task' );
     grunt.loadNpmTasks( 'grunt-jsdoc' );
+    grunt.loadNpmTasks( 'grunt-mocha' );
 
 	grunt.registerTask( "setup", ["prepare", "bower:install"] );
 	grunt.registerTask( "build", ["requirejs:compile", "copy"] );
+    grunt.registerTask( "document", ["jsdoc", "watch:documentation"] );
+    grunt.registerTask( "test", ["mocha"] );
 
-	grunt.registerTask( "default", ["build", "watch"] );
+	grunt.registerTask( "default", ["build", "watch:application"] );
 };

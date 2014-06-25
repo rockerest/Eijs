@@ -18,6 +18,10 @@
   ],
   "devDependencies": {
     "require": "requirejs#~2.1.14",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "mocha": "~1.20.1",
+    "chai": "~1.9.1",
+    "sinon": "~1.10.2",
+    "sinon-chai": "~2.5.0"
   }
 }
