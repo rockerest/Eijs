@@ -62,8 +62,8 @@ define(
 		 * Stop managing a canvas node
 		 * @param  {HTMLCanvasElement} node - An HTML CANVAS node that has been managed by EiJS
 		 *
-		 * @fires module:events/init.canvas/unmanage
-		 * @fires module:events/init.canvas/unmanage/fail
+		 * @fires module:events/init.init/canvas/unmanage
+		 * @fires module:events/init.init/canvas/unmanage/fail
 		 */
 		ei.prototype.unmanage = function( node ){
 			var match = function( canvas ){
@@ -114,13 +114,13 @@ define(
 		 * Add a new CANVAS to the list of EiJS-managed canvasses
 		 * @param  {HTMLCanvasElement} canvas - A CANVAS to add to the list of known EiJS canvasses
 		 *
-		 * @fires  module:events/init.canvas/manage
+		 * @fires  module:events/init.init/canvas/manage
 		 *
 		 * @return {HTMLCanvasElement}
 		 */
 		ei.prototype.pushCanvas = function( canvas ){
 			this.canvasses[ canvas.getAttribute( "data-eijs-id" ) ] = canvas;
-			this.events.fire( "eijs/init/canvas/manage" );
+			this.events.fire( "init/canvas/manage" );
 
 			return canvas;
 		};
@@ -130,7 +130,7 @@ define(
 		 * @param  {module:ei} Ei
 		 * @param  {HTMLCanvasElement} node
 		 *
-		 * @fires  module:events/init.canvas/remanage
+		 * @fires  module:events/init.init/canvas/remanage
 		 *
 		 * @return {HTMLCanvasElement}
 		 */
@@ -142,7 +142,7 @@ define(
 				loaded, id;
 
 			if( managed ){
-				Ei.events.fire( "eijs/init/canvas/remanage", { "id": managed.getAttribute( "data-eijs-id") } );
+				Ei.events.fire( "init/canvas/remanage", { "id": managed.getAttribute( "data-eijs-id") } );
 			}
 			else{
 				managed = Init.load( node );

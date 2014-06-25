@@ -39,7 +39,7 @@ define(
             /**
              * Throws a marker message when a new CANVAS is managed by EiJS
              *
-             * @event module:events/init.canvas/manage
+             * @event module:events/init.init/canvas/manage
              */
             this.bind( "init/canvas/manage", function( e ){
                 console.info( "EiJS is managing a new canvas." );
@@ -49,7 +49,7 @@ define(
             /**
              * Throws a message if an attempt is made to manage a CANVAS that is already under EiJS management
              *
-             * @event module:events/init.canvas/remanage
+             * @event module:events/init.init/canvas/remanage
              */
             this.bind( "init/canvas/remanage", function( e ){
                 console.info( "EiJS is already managing that canvas." );
@@ -59,7 +59,7 @@ define(
             /**
              * Throws a marker message when a CANVAS is no longer managed by EiJS
              *
-             * @event module:events/init.canvas/unmanage
+             * @event module:events/init.init/canvas/unmanage
              */
             this.bind( "init/canvas/unmanage", function( e ){
                 console.info( "EiJS has stopped managing a canvas." );
@@ -69,7 +69,7 @@ define(
             /**
              * Throws a message if an attempt is made to stop managing a CANVAS that is not under EiJS management
              *
-             * @event module:events/init.canvas/unmanage/fail
+             * @event module:events/init.init/canvas/unmanage/fail
              */
             this.bind( "init/canvas/unmanage/fail", function( e ){
                 console.info( "EiJS is not managing that canvas." );
