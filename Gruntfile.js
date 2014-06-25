@@ -47,7 +47,7 @@ module.exports = function( grunt ){
                 "src": "test/index.html",
                 "options": {
                     "growlOnSuccess": true,
-                    "reporter": "Nyan"
+                    "reporter": "Spec"
                 }
             }
         },
